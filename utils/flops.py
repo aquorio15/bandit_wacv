@@ -67,7 +67,7 @@ for idx in range(100):
 
 device = torch.device('cuda')
 results = {}
-for model_name in ['vit_base_patch32_224']:
+for model_name in ['vit_base_patch32_224_ucb']:
     model = create_model(model_name, pretrained=False)
     model.eval()
     # model = torch.hub.load('vit_base_patch32_224', model_name, pretrained=True)
