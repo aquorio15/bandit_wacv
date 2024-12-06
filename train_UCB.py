@@ -119,7 +119,6 @@ def valid(args, model, writer, test_loader, UCB_Count_Score, epoch, global_step)
     for step, batch in enumerate(epoch_iterator):
         batch = tuple(t.to(args.device) for t in batch)
         x, y = batch
-        x = x.expand(-1, 3, -1, -1)
         with torch.no_grad():
             # logits = model(x)[0]
             logits = model(
@@ -227,9 +226,7 @@ def train(args, model):
         for step, batch in enumerate(epoch_iterator):
             batch = tuple(t.to(args.device) for t in batch)
             x, y = batch
-            # x = x.expand(-1, 3, -1, -1)
             step1 += 1
-            # loss = model(x, y)
             loss, count = model(
                 x=x, counter=step1, ucb=True, UCB_Count_Score=Count_Score, labels=y
             )
